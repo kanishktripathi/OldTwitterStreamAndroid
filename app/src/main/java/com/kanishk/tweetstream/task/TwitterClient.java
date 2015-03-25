@@ -162,7 +162,7 @@ public class TwitterClient {
 	 * Closes all open connections, cancels running tasks and release the resources.
 	 */
 	public void closeAndRelease() {
-		if(task != null && task.isRunning()) {
+		if(task != null) {
 			task.closeAndRelease();			
 		}
 	}
