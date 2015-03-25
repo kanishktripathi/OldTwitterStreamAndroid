@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TweetStream</string>
+    <string name="search_hint">Enter text for filter stream</string>
+    <string name="search_text">Search&#8230;</string>
+    <string name="authority">com.kanishk.tweetstream.data.TweetContentProvider</string>
+    <string name="refresh">Refresh</string>
+    <string name="title_activity_twitter">TwitterActivity</string>
+    <string name="net_connect_error">Please connect to mobile data or Wi-fi</string>
+    <string name="title_activity_search">StreamSearch</string>
+    <string name="action_settings">Settings</string>
+
+</resources>

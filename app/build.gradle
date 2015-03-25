@@ -1,0 +1,32 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion '21.0.0'
+
+    defaultConfig {
+        applicationId "com.kanishk.tweetstream"
+        minSdkVersion 15
+        targetSdkVersion 21
+        versionCode 1
+        versionName '1.0'
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
+    compile 'oauth.signpost:signpost-core:1.2.1.2'
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.android.support:support-v4:21.0.0'
+
+}
