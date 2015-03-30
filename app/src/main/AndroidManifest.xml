@@ -40,10 +40,10 @@
             android:launchMode="singleTop"
             android:parentActivityName="com.kanishk.tweetstream.operations.TweetActivity" >
 
-            <meta-data
+            <!--<meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:parentActivityName="com.kanishk.tweetstream.operations.TweetActivity"/>
-
+            -->
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
