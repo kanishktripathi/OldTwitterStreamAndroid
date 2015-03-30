@@ -57,8 +57,6 @@ public class TwitterClient {
 
 	/** The task. */
 	private ConnectionTask task;
-	
-	private boolean isNewSearch;
 
 	/**
 	 * Instantiates a new twitter client.
@@ -110,10 +108,10 @@ public class TwitterClient {
 	 *             Signals that an I/O exception has occurred.
 	 */
 	private Response createConnection(String urlText) throws IOException {
-		Response clientResponse = null;
 		if (this.response == null || !this.response.isValid()) {
-			try {
-				URL url = new URL(urlText);
+            try {
+                Response clientResponse;
+                URL url = new URL(urlText);
 				HttpsURLConnection connection = (HttpsURLConnection) url
 						.openConnection();
 				connection.setConnectTimeout(CONNECTION_TIMEOUT);
