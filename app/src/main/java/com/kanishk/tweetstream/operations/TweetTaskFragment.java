@@ -119,8 +119,14 @@ public class TweetTaskFragment extends Fragment implements TweetUpdateListener {
 		this.searchText = searchText;
 		this.isNewSearch = true;
 	}
-	
-	/**
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        twitterClient.closeAndRelease();
+    }
+
+    /**
 	 * The listener interface for receiving taskFragment events.
 	 * The class that is interested in processing a taskFragment
 	 * event implements this interface, and the object created

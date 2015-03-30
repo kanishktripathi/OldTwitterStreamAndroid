@@ -1,7 +1,5 @@
 package com.kanishk.tweetstream.operations;
 
-import java.util.List;
-
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +8,6 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -29,6 +26,8 @@ import com.kanishk.tweetstream.model.Tweet;
 import com.kanishk.tweetstream.operations.TweetTaskFragment.TaskFragmentListener;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
+import java.util.List;
 
 /**
  * The Class TweetActivity. The activity for displaying tweets without filter.
@@ -112,6 +111,7 @@ public class TweetActivity extends FragmentActivity implements
 				String searchText = intent.getStringExtra(SearchManager.QUERY);
 				Intent searchIntent = new Intent(getApplicationContext(),
 						SearchActivity.class);
+                swipeLayout.requestFocus();
 				searchIntent.putExtra(SearchManager.QUERY, searchText);
 				startActivity(searchIntent);
 			} else {
