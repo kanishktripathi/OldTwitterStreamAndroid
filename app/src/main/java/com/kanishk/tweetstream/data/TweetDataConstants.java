@@ -2,7 +2,7 @@ package com.kanishk.tweetstream.data;
 
 import android.net.Uri;
 
-import com.kanishk.tweetstream.task.R;
+import com.kanishk.tweetstream.operations.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 /**
@@ -44,7 +44,10 @@ public class TweetDataConstants {
 	public static final int TWEET_LIMIT = 400;
 	
 	/** The order by id. */
-	public static String ORDER_BY_ID = "_id desc LIMIT " + TWEET_LIMIT;
+	public static String ORDER_BY_ID = "_id desc LIMIT " + 20;
+	
+	/** The order by id. */
+	public static String ORDER_BY = "_id desc LIMIT ";
 	
 	/** The columns. */
 	public static String COLUMNS[] = {FIELD_SCREEN_NAME, FIELD_NAME,
@@ -77,8 +80,20 @@ public class TweetDataConstants {
 	/** The Constant SEARCH_TEXT. Key for search text on a stream*/
 	public static final String SEARCH_TEXT = "search_text";
 	
+	/** The Constant UTF8. */
 	public static final String UTF8 = "UTF-8";
 	
+	/** The Constant TASK_FRAGMENT. */
+	public static final String TASK_FRAGMENT = "com.kanishk.tweet.taskFragment";
+	
+	/** The Constant DISPLAY_FRAGMENT. */
+	public static final String DISPLAY_FRAGMENT = "com.kanishk.tweet.displayFragment";
+	
+	/** The Constant RECREATED. */
+	public static final String RECREATED ="recreated";
+	
+	/** The Constant IS_NEW. */
+	public static final String IS_NEW ="is_new";
 	
 	/** The Constant IMAGE_DISPLAY_OPTIONS. */
 	public static final DisplayImageOptions IMAGE_DISPLAY_OPTIONS;

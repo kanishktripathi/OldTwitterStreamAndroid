@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kanishk.tweetstream.task">
+    package="com.kanishk.tweetstream.operations">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,8 +14,7 @@
         <activity
             android:name=".TweetActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait" >
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,16 +35,14 @@
             android:exported="false" />
 
         <activity
-            android:name="com.kanishk.tweetstream.task.SearchActivity"
+            android:name=".SearchActivity"
             android:label="@string/title_activity_search"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:parentActivityName="com.kanishk.tweetstream.task.TweetActivity" >
+            android:parentActivityName="com.kanishk.tweetstream.operations.TweetActivity" >
 
-            <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.kanishk.weather.activity.WeatherActivity" />
+                android:parentActivityName="com.kanishk.tweetstream.operations.TweetActivity"/>
 
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -56,5 +53,6 @@
                 android:resource="@layout/search_layout" />
         </activity>
     </application>
+
 
 </manifest>

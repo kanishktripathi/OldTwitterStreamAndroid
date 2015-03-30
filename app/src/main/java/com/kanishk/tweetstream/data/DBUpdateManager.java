@@ -1,13 +1,11 @@
 package com.kanishk.tweetstream.data;
 
 import java.util.List;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.net.Uri;
+import android.os.AsyncTask;
 
 import com.kanishk.tweetstream.model.Tweet;
 import com.kanishk.tweetstream.model.User;
@@ -22,30 +20,8 @@ public class DBUpdateManager {
 	/** The Constant manager. */
 	private static final DBUpdateManager manager;
 
-	/** The Constant CORE_POOLSIZE. */
-	private static final int CORE_POOLSIZE = Runtime.getRuntime()
-			.availableProcessors() + 1;
-
-	/** The Constant THREAD_POOL_SIZE. */
-	private static final int THREAD_POOL_SIZE = CORE_POOLSIZE + 2;
-
-	/** The thread pool. */
-	private final ThreadPoolExecutor THREAD_POOL;
-
-	/** The work queue. */
-	private final LinkedBlockingQueue<Runnable> WORK_QUEUE;
-
 	static {
 		manager = new DBUpdateManager();
-	}
-
-	/**
-	 * Instantiates a new DB update manager.
-	 */
-	private DBUpdateManager() {
-		WORK_QUEUE = new LinkedBlockingQueue<Runnable>(10);
-		THREAD_POOL = new ThreadPoolExecutor(CORE_POOLSIZE, THREAD_POOL_SIZE,
-				1, TimeUnit.SECONDS, WORK_QUEUE);
 	}
 
 	/**
@@ -66,7 +42,7 @@ public class DBUpdateManager {
 	 *            the resolver
 	 */
 	public void insertRows(List<Tweet> tweetList, ContentResolver resolver) {
-		THREAD_POOL.execute(new InsertTask(TweetDataConstants.CONTENT_URI,
+		AsyncTask.THREAD_POOL_EXECUTOR.execute(new InsertTask(TweetDataConstants.CONTENT_URI,
 				tweetList, resolver, false));
 	}
 
@@ -82,7 +58,7 @@ public class DBUpdateManager {
 	 */
 	public void insertSearchResults(List<Tweet> tweetList,
 			ContentResolver resolver, boolean refresh) {
-		THREAD_POOL.execute(new InsertTask(
+		AsyncTask.THREAD_POOL_EXECUTOR.execute(new InsertTask(
 				TweetDataConstants.CONTENT_SEARCH_URI, tweetList, resolver,
 				refresh));
 	}
@@ -92,7 +68,9 @@ public class DBUpdateManager {
 	 * @param resolver the content resolver
 	 */
 	public void clearSearchTable(ContentResolver resolver) {
-		THREAD_POOL.execute(new DeleteTask(TweetDataConstants.CONTENT_SEARCH_URI, resolver));
+		resolver.delete(TweetDataConstants.CONTENT_SEARCH_URI, "1", null);
+//		AsyncTask.THREAD_POOL_EXECUTOR.execute(new DeleteTask(TweetDataConstants.CONTENT_SEARCH_URI,
+//				resolver));
 	}
 
 	/**

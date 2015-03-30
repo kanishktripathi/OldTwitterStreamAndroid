@@ -10,13 +10,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kanishk.tweetstream.data.TweetDataConstants;
-import com.kanishk.tweetstream.task.R;
+import com.kanishk.tweetstream.operations.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+/**
+ * The Class TweetCursorAdapter.
+ */
 public class TweetCursorAdapter extends CursorAdapter {
 	
+	/** The image loader. */
 	private ImageLoader imageLoader;
 	
+	/**
+	 * Instantiates a new tweet cursor adapter.
+	 *
+	 * @param context the context
+	 * @param c the c
+	 * @param loader the loader
+	 */
 	public TweetCursorAdapter(Context context, Cursor c, ImageLoader loader) {
 		super(context, c, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 		this.imageLoader = loader;
@@ -47,10 +58,22 @@ public class TweetCursorAdapter extends CursorAdapter {
 				TweetDataConstants.IMAGE_DISPLAY_OPTIONS);
 	}
 
+	/**
+	 * The Class ViewHolder. A holder class to avoid calling findview by id
+	 * in thr adapter.
+	 */
 	private static class ViewHolder {
+		
+		/** The screen name. */
 		TextView screenName;
+		
+		/** The name. */
 		TextView name;
+		
+		/** The tweet. */
 		TextView tweet;
+		
+		/** The image. */
 		ImageView image;
 	}
 }

@@ -33,7 +33,7 @@ public class Response {
 	 * Instantiates a new response.
 	 *
 	 * @param urlConnection the url connection
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws java.io.IOException Signals that an I/O exception has occurred.
 	 */
 	public Response(HttpsURLConnection urlConnection) throws IOException {
 		this.connection = urlConnection;
@@ -78,7 +78,7 @@ public class Response {
 	/**
 	 * Release resources.
 	 *
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws java.io.IOException Signals that an I/O exception has occurred.
 	 */
 	public void releaseResources() throws IOException {
 		if(this.connection != null) {

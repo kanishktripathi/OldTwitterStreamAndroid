@@ -5,6 +5,8 @@
     <string name="search_hint">Enter text for filter stream</string>
     <string name="search_text">Search&#8230;</string>
     <string name="authority">com.kanishk.tweetstream.data.TweetContentProvider</string>
+    <string name="search_loading">A search is already running.</string>
+    <string name="search_result_empty">No results to show</string>
     <string name="refresh">Refresh</string>
     <string name="title_activity_twitter">TwitterActivity</string>
     <string name="net_connect_error">Please connect to mobile data or Wi-fi</string>

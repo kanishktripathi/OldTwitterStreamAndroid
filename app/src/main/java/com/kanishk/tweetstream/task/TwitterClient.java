@@ -10,8 +10,10 @@ import oauth.signpost.OAuthConsumer;
 import oauth.signpost.basic.DefaultOAuthConsumer;
 import oauth.signpost.exception.OAuthException;
 
+import android.os.AsyncTask;
+
 import com.kanishk.tweetstream.data.TweetDataConstants;
-import com.kanishk.tweetstream.task.TwitterTask.TweetUpdateListener;
+import com.kanishk.tweetstream.task.ConnectionTask.TweetUpdateListener;
 
 /**
  * The Class TwitterClient. The client to manage connections to twitter stream
@@ -54,7 +56,9 @@ public class TwitterClient {
 	private Response response;
 
 	/** The task. */
-	private TwitterTask task;
+	private ConnectionTask task;
+	
+	private boolean isNewSearch;
 
 	/**
 	 * Instantiates a new twitter client.
@@ -73,7 +77,7 @@ public class TwitterClient {
 	 *  the sample twitter stream API. Do not call this method from a
 	 * UI thread.
 	 * @return the response
-	 * @throws IOException
+	 * @throws java.io.IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public Response getResponse() throws IOException {
@@ -86,7 +90,7 @@ public class TwitterClient {
 	 * @param filterText
 	 *            the filter text
 	 * @return the response
-	 * @throws IOException
+	 * @throws java.io.IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public Response getResponse(String filterText) throws IOException {
@@ -102,10 +106,11 @@ public class TwitterClient {
 	 *            the url endpoint of the stream API.
 	 * @return the response the wrapper class of the response containing connection object,
 	 *  response stream, status.
-	 * @throws IOException
+	 * @throws java.io.IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
 	private Response createConnection(String urlText) throws IOException {
+		Response clientResponse = null;
 		if (this.response == null || !this.response.isValid()) {
 			try {
 				URL url = new URL(urlText);
@@ -114,7 +119,8 @@ public class TwitterClient {
 				connection.setConnectTimeout(CONNECTION_TIMEOUT);
 				connection.setRequestMethod(HTTP_METHOD);
 				authorizeSign.sign(connection);
-                this.response = new Response(connection);
+				clientResponse = new Response(connection);
+				this.response = clientResponse;
 			} catch (OAuthException e) {
 				throw new IOException(e);
 			}
@@ -136,13 +142,12 @@ public class TwitterClient {
 	 *            search.
 	 */
 	public void downloadTweets(String searchText, boolean isNewSearch) {
-		if (isNewSearch && this.task != null) {
-			task.closeAndRelease();
-			task = null;
-		}
 		if (task == null || !task.isRunning()) {
-			task = new TwitterTask(tweetListener, this);
-			task.execute(searchText);
+			if (task != null && isNewSearch) {
+				task.closeAndRelease();
+			}
+			task = new ConnectionTask(tweetListener, this);
+			task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, searchText);
 		}
 	}
 
@@ -153,8 +158,8 @@ public class TwitterClient {
 	 */
 	public void downloadTweets() {
 		if (task == null || !task.isRunning()) {
-			task = new TwitterTask(tweetListener, this);
-			task.execute();
+			task = new ConnectionTask(tweetListener, this);
+			task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		}
 	}
 	
