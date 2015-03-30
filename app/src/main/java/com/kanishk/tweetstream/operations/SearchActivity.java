@@ -4,10 +4,8 @@ import java.util.List;
 
 import android.app.SearchManager;
 import android.content.Intent;
-import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
 
 import com.kanishk.tweetstream.data.DBUpdateManager;
 import com.kanishk.tweetstream.data.TweetDataConstants;
@@ -42,10 +40,15 @@ public class SearchActivity extends TweetActivity {
 			String searchQuery = launchIntent.getExtras().getString(
 					SearchManager.QUERY);
 			setUpSearch(searchQuery);
+			displayFragment.setIsLoading(true);
 			taskFragment.setupInitSearch(searchQuery);
 		}
 	}
-
+	
+	protected Uri getDataUri() {
+		return TweetDataConstants.CONTENT_SEARCH_URI;
+	}
+	
 	@Override
 	protected void checkIntent(Intent intent) {
 		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
@@ -54,7 +57,7 @@ public class SearchActivity extends TweetActivity {
 				displayMessage(getString(R.string.search_loading));
 			} else if (!searchQuery.equals(this.searchText)) {
 				setUpSearch(searchQuery);
-				onRefresh();
+				loadTweets();
 			}
 		}
 	}
@@ -68,30 +71,19 @@ public class SearchActivity extends TweetActivity {
 	}
 
 	@Override
-	public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-		CursorLoader loader = null;
-		if (arg0 == TWEET_LOADER) {
-			String orderBy = TweetDataConstants.ORDER_BY + scrollListener.getCurrentScrollCount();
-			loader = new CursorLoader(this, TweetDataConstants.CONTENT_SEARCH_URI,
-					TweetDataConstants.COLUMNS, null, null, orderBy);
-		}
-		return loader;
-	}
-
-	@Override
-	public void onRefresh() {
+	public void loadTweets() {
 		if (hasNetAccess()) {
 			taskFragment.refresh(searchText, isNewSearchResult);
 			isNewSearchResult = false;
 		} else {
-			swipeLayout.setRefreshing(false);
+			displayFragment.removeRefresh();
 			displayMessage(getString(R.string.net_connect_error));
 		}
 	}
 
 	@Override
 	public void onUpdateTweets(List<Tweet> tweet) {
-		swipeLayout.setRefreshing(false);
+		displayFragment.removeRefresh();
 		if (tweet != null && !tweet.isEmpty()) {
 			DBUpdateManager.getInstance().insertSearchResults(tweet,
 					getContentResolver(), isNewSearchResult);
@@ -106,11 +98,12 @@ public class SearchActivity extends TweetActivity {
 	 *            the string on which to filter the stream
 	 */
 	private void setUpSearch(String searchString) {
-		swipeLayout.setRefreshing(false);
 		this.searchText = searchString;
 		this.isNewSearchResult = true;
 		DBUpdateManager.getInstance().clearSearchTable(getContentResolver());
-		scrollListener.resetScroll();
-		displayRefresh();
+        if(displayFragment.isInitialized()) {
+            displayFragment.resetScrollListener();
+            displayFragment.displayRefresh();
+        }
 	}
 }

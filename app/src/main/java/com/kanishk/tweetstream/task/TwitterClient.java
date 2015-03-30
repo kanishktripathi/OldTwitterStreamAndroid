@@ -144,6 +144,7 @@ public class TwitterClient {
 	public void downloadTweets(String searchText, boolean isNewSearch) {
 		if (task == null || !task.isRunning()) {
 			if (task != null && isNewSearch) {
+                response = null;
 				task.closeAndRelease();
 			}
 			task = new ConnectionTask(tweetListener, this);
