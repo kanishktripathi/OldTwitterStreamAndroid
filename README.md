@@ -2,7 +2,9 @@
 A basic android app that captures feeds from twitter stream API
 
 **Key learnings**
-This project was helpful in learning Fragments, Listview, Loaders and content providers on Android. Also explored about OAuth protocol whose mechanism I had used in earlier projects but the concept itself was not known to me.
+This project was helpful in learning Fragments, Listview, Loaders and content providers on Android. 
+However, more than the features, it was the code deisgn which I believe was the good part. Separating code into fragments and layers with Activities classes acting as controller.
+Also explored about OAuth protocol whose mechanism I had used in earlier projects but the concept itself was not known to me.
 
 
 **License**
