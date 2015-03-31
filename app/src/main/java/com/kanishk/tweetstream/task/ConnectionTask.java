@@ -61,17 +61,18 @@ public class ConnectionTask extends AsyncTask<String, Tweet, List<Tweet>> {
 				clientResponse = twitterClient.getResponse(params[0]);
 			}
 			twitterClient = null;
-			if (clientResponse.isSuccess()) {
-				twitterTask = new TwitterTask();
-				twitterTask.executeOnExecutor(THREAD_POOL_EXECUTOR, clientResponse);
-				result = twitterTask.get(MAX_DELAY, TimeUnit.SECONDS);
-			} else {
+			if (clientResponse != null && clientResponse.isSuccess() && !isCancelled()) {
+                twitterTask = new TwitterTask();
+                twitterTask.executeOnExecutor(THREAD_POOL_EXECUTOR, clientResponse);
+                result = twitterTask.get(MAX_DELAY, TimeUnit.SECONDS);
+			} else if(clientResponse != null && !clientResponse.isSuccess()) {
 				String response = clientResponse.streamReader().readLine();
 				Log.e(ConnectionTask.class.toString(), response);
 			}
 		} catch (IOException | ExecutionException | InterruptedException
 				| TimeoutException e) {
 			Log.e(e.toString(), e.toString());
+            twitterTask.cancel(true);
 			result = new ArrayList<>(0);
 		}
 		if (!isRunning()) {
@@ -94,6 +95,15 @@ public class ConnectionTask extends AsyncTask<String, Tweet, List<Tweet>> {
 		return Status.RUNNING.equals(this.getStatus());
 	}
 
+    /**
+     *  Cancels and interrupts this current task.
+     */
+    private void cancelTask() {
+        if(twitterTask != null) {
+            twitterTask.cancel(true);
+        }
+        this.cancel(true);
+    }
 	/**
 	 * Close and release. Closes and releases the resources of this task.
 	 */
@@ -109,8 +119,6 @@ public class ConnectionTask extends AsyncTask<String, Tweet, List<Tweet>> {
 	 * <code>addTweetUpdateListener<code> method. When
 	 * the tweetUpdate event occurs, that object's appropriate
 	 * method is invoked.
-	 * 
-	 * @see TweetUpdateEvent
 	 */
 	public static interface TweetUpdateListener {
 
@@ -146,12 +154,13 @@ public class ConnectionTask extends AsyncTask<String, Tweet, List<Tweet>> {
 		public void run() {
 			try {
 				if (task.isRunning()) {
-					task.twitterTask.cancel(false);
-					task.cancel(false);
+					task.cancelTask();
 				}
 			} finally {
 				try {
-					task.clientResponse.releaseResources();
+                    if(task.clientResponse != null) {
+                        task.clientResponse.releaseResources();
+                    }
 				} catch (IOException e) {
 					Log.e(HelperThread.class.toString(), e.getMessage());
 				}

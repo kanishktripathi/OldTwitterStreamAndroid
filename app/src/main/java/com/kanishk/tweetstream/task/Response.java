@@ -46,6 +46,9 @@ public class Response {
 			responseStream = connection.getErrorStream();
 		}
 		reader = new BufferedReader(new InputStreamReader(responseStream));
+        if(Thread.interrupted()) {
+            releaseResources();
+        }
 	}
 
 	/**
@@ -55,24 +58,6 @@ public class Response {
 	 */
 	public boolean isSuccess() {
 		return responseCode >= 200 && responseCode < 400;
-	}
-
-	/**
-	 * Gets the response stream.
-	 *
-	 * @return the response stream
-	 */
-	public InputStream getResponseStream() {
-		return responseStream;
-	}
-
-	/**
-	 * Gets the connection.
-	 *
-	 * @return the connection
-	 */
-	public HttpURLConnection getConnection() {
-		return connection;
 	}
 	
 	/**
