@@ -44,31 +44,15 @@
   <component name="ChangeListManager">
     <list default="true" id="c68669ce-cd8e-44f0-81a4-e37b1e989cc5" name="Default" comment="Handled interrupt changes">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\.idea\.name" afterPath="" />
-      <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\.idea\compiler.xml" afterPath="" />
       <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\.idea\copyright\profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\.idea\encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\.idea\gradle.xml" afterPath="" />
       <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\.idea\libraries\commons_codec_1_3.xml" afterPath="" />
       <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\.idea\libraries\gson_2_3_1.xml" afterPath="" />
       <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\.idea\libraries\signpost_core_1_2_1_2.xml" afterPath="" />
       <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\.idea\libraries\support_annotations_21_0_0.xml" afterPath="" />
       <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\.idea\libraries\support_v4_21_0_0.xml" afterPath="" />
       <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\.idea\libraries\universal_image_loader_1_9_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\.idea\misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\.idea\modules.xml" afterPath="" />
       <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\.idea\scopes\scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\.idea\vcs.xml" afterPath="" />
       <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\.idea\workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\TweetStream.iml" afterPath="" />
-      <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\TwitterStream.iml" afterPath="" />
-      <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\app\app.iml" afterPath="" />
-      <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\build\intermediates\dex-cache\cache.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\build\intermediates\lint-cache\api-versions-6-22.bin" afterPath="" />
-      <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\build\intermediates\lint-cache\typos-en.txt-2.bin" afterPath="" />
-      <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\build\intermediates\model_data.bin" afterPath="" />
-      <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\gradlew" afterPath="" />
-      <change type="DELETED" beforePath="E:\Work\UoR\CSC412\TwitterStream\gradlew.bat" afterPath="" />
     </list>
     <ignored path="TweetStream.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1692,7 +1676,11 @@
       <created>1427900696042</created>
       <updated>1427900696042</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Remove unwanted files">
+      <created>1427902114821</created>
+      <updated>1427902114821</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1772,7 +1760,8 @@
     <MESSAGE value="remove minified release build" />
     <MESSAGE value="Handled interrupt changes" />
     <MESSAGE value="Removed unused constants" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unused constants" />
+    <MESSAGE value="Remove unwanted files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove unwanted files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
