@@ -13,12 +13,6 @@ public class TweetDataConstants {
 	/** The db name. */
 	public static String DB_NAME = "com.kanishk.tweet";
 
-	/** The table name. */
-	public static String TABLE_NAME = "tweets";
-	
-	/** The limit on the number of rows to fetch in a query. */
-	public static String LIMIT = "400";
-	
 	/** The field screen name. */
 	public static String FIELD_SCREEN_NAME = "screen_name";
 	
@@ -39,13 +33,7 @@ public class TweetDataConstants {
 	
 	/** The field tweet text. */
 	public static String FIELD_TWEET_TEXT = "tweet";
-	
-	/** The Constant TWEET_LIMIT. The maximum number of tweets to show in a list view*/
-	public static final int TWEET_LIMIT = 400;
-	
-	/** The order by id. */
-	public static String ORDER_BY_ID = "_id desc LIMIT " + 20;
-	
+
 	/** The order by id. */
 	public static String ORDER_BY = "_id desc LIMIT ";
 	
@@ -85,10 +73,7 @@ public class TweetDataConstants {
 	
 	/** The Constant TASK_FRAGMENT. */
 	public static final String TASK_FRAGMENT = "com.kanishk.tweet.taskFragment";
-	
-	/** The Constant DISPLAY_FRAGMENT. */
-	public static final String DISPLAY_FRAGMENT = "com.kanishk.tweet.displayFragment";
-	
+
 	/** The Constant RECREATED. */
 	public static final String RECREATED ="recreated";
 	
