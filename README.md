@@ -1,5 +1,5 @@
 **TwitterStream**
-A basic android app that captures feeds from twitter stream API
+Basic android app that captures feeds from twitter stream API
 
 **Key learnings**
 This project was helpful in learning Fragments, Listview, Loaders and content providers on Android. 
